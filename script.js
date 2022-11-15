@@ -9,14 +9,15 @@ var hour14 = $("#hour-14");
 var hour15 = $("#hour-15");
 var hour16 = $("#hour-16");
 var hour17 = $("#hour-17");
-var saveBtnel = $('.saveBtn')
+var saveBtnel = $('.saveBtn');
 var hourEl = $(".hour");
 var todo = $(".description");
-var index = 0;
+
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
 $(function () {
 
 
@@ -40,22 +41,23 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  $(".time-block").each(function () {
-    var hours = parseInt(this.id.split("hour")[0]);
+
+    $(".time-block").each(function () {
+    var hours = parseInt($(this).atttr('id').split("-")[1]);
     if (hours < now) {
-      $(this).removeClass("present");
-      $(this).removeClass("future");
-      $(this).addClass("past");
-    } else if (hours === now) {
-      $(this).removeClass("past");
-      $(this).removeClass("future");
-      $(this).addClass("present");
+      $(this).addClass('past');
+      console.log(hours + "past")
+    } else if (hours > now) {
+      $(this).addClass('future');
+    console.log(hours + "future")
     } else {
-      $(this).removeClass("past");
-      $(this).removeClass("present");
-      $(this).addClass("future");
+      $(this).addClass('present')
+      console.log(now + "present")
     }
-  })
+  });
+
+
+
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
@@ -70,6 +72,6 @@ $(function () {
   hour16.children(".description").val(localStorage.getItem("hour-16"));
   hour17.children(".description").val(localStorage.getItem("hour-17"));
  
-  });
+});
    // TODO: Add code to display the current date in the header of the page.
   $('#currentDay').text(today.format('MMM D, YYYY'));
