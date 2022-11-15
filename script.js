@@ -1,6 +1,7 @@
 var now = dayjs().hour();
 var today = dayjs();
 var hour9 = $("#hour-9");
+console.log("test")
 var hour10 = $("#hour-10");
 var hour11 = $("#hour-11");
 var hour12 = $("#hour-12");
@@ -41,20 +42,26 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-
+  $(function timeCall() {
     $(".time-block").each(function () {
-    var hours = parseInt($(this).atttr('id').split("-")[1]);
-    if (hours < now) {
-      $(this).addClass('past');
-      console.log(hours + "past")
-    } else if (hours > now) {
-      $(this).addClass('future');
-    console.log(hours + "future")
-    } else {
-      $(this).addClass('present')
-      console.log(now + "present")
-    }
+      var hours = parseInt($(this).atttr('id').split("-")[1]);
+      if (hours < now) {
+        $(this).addClass('past');
+        console.log(hours + "past")
+      } else if (hours > now) {
+        $(this).addClass('future');
+        console.log(hours + "future")
+      } else {
+        $(this).addClass('present')
+        console.log(now + "present")
+      }
+    })
   });
+
+  timeCall();
+
+
+  
 
 
 
@@ -74,4 +81,4 @@ $(function () {
  
 });
    // TODO: Add code to display the current date in the header of the page.
-  $('#currentDay').text(today.format('MMM D, YYYY'));
+$('#currentDay').text(today.format('MMM D, YYYY'));
